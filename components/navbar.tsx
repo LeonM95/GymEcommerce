@@ -1,6 +1,35 @@
+"use client";
+
 import Link from "next/link";
+import {
+  ShoppingCartIcon,
+  Bars3Icon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
+import { useCartStore } from "@/store/cart-store";
+import { useState } from "react";
+import { useEffect } from "react";
+import { Button } from "./ui/button";
 
 export const Navbar = () => {
+  const { items } = useCartStore();
+  // total items that has been added to cart
+  const cartCount = items.reduce((acc, item) => acc + item.quantity, 0);
+
+  const [mobileOpen, setMobileOpen] = useState<boolean>(false);
+
+  //to handle mobilenavbar
+  useEffect(() => {
+    const handleRezise = () => {
+      if (window.innerWidth >= 768) {
+        setMobileOpen(false);
+      }
+    };
+    window.addEventListener("resize", handleRezise);
+    // to avoid memory leaks
+    return () => window.removeEventListener("resize", handleRezise);
+  }, []);
+
   return (
     <nav className="sticky top-0 z-50 bg-white shadow">
       {/* div for all navbar */}
@@ -19,9 +48,47 @@ export const Navbar = () => {
             Checkout
           </Link>
         </div>
-        {/* card info */}
-        <div></div>
+        {/* cart  */}
+        <div className="flex items-center space-x-4">
+          <Link href="/checkout" className="relative">
+            <ShoppingCartIcon className="h-6 w-6" />
+            {cartCount > 0 && (
+              <span className="absolute -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs text-white">
+                {cartCount}
+              </span>
+            )}
+          </Link>
+          {/* //onmclick set open to opposite it is */}
+          <Button
+            variant="ghost"
+            onClick={() => setMobileOpen((prev) => !prev)}
+            className="md:hidden"
+          >
+            {mobileOpen ? <XMarkIcon /> : <Bars3Icon />}
+          </Button>
+        </div>
       </div>
+      {mobileOpen && (
+        <nav className="md:hidden bg-white shadow-md">
+          <ul className="flex flex-col p-4 space-y-2">
+            <li>
+              <Link href="/" className="block hover:text-blue-600">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link href="/products" className="block hover:text-blue-600">
+                Products
+              </Link>
+            </li>
+            <li>
+              <Link href="/checkout" className="block hover:text-blue-600">
+                Checkout
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      )}
     </nav>
   );
 };
