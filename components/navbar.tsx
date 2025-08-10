@@ -10,6 +10,7 @@ import { useCartStore } from "@/store/cart-store";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Button } from "./ui/button";
+import Image from "next/image";
 
 export const Navbar = () => {
   const { items } = useCartStore();
@@ -33,18 +34,27 @@ export const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 bg-white shadow">
       {/* div for all navbar */}
-      <div className="container mx-auto flex items-center justify-between px-4 py-4">
+      <div className="container mx-auto flex items-center justify-between px-4 py-0">
         {/* logo */}
-        <Link href="/" className="hover:text-blue-600">
-          My Ecommerce
+        <Link href="/" className="py-0">
+          <Image
+            src="/logo_black.png" // Make sure your logo.png is in the public folder
+            alt="My Ecommerce Logo"
+            width={120} // Adjust size as needed
+            height={40}
+            priority // Optional: loads image faster for important assets
+          />
         </Link>
         {/* hide navbar mobile devices - elemets navbar */}
         <div className="hidden md:flex space-x-6">
           <Link href="/">Home</Link>
-          <Link href="/products" className="hover:text-blue-600">
+          <Link href="/locations" className="hover:text-red-600">
+            Locations
+          </Link>
+          <Link href="/products" className="hover:text-red-600">
             Products
           </Link>
-          <Link href="/checkout" className="hover:text-blue-600">
+          <Link href="/checkout" className="hover:text-red-600">
             Checkout
           </Link>
         </div>
@@ -72,17 +82,22 @@ export const Navbar = () => {
         <nav className="md:hidden bg-white shadow-md">
           <ul className="flex flex-col p-4 space-y-2">
             <li>
-              <Link href="/" className="block hover:text-blue-600">
+              <Link href="/" className="block hover:text-red-600">
                 Home
               </Link>
             </li>
             <li>
-              <Link href="/products" className="block hover:text-blue-600">
+              <Link href="/locations" className="block hover:text-red-600">
+                Locations
+              </Link>
+            </li>
+            <li>
+              <Link href="/products" className="block hover:text-red-600">
                 Products
               </Link>
             </li>
             <li>
-              <Link href="/checkout" className="block hover:text-blue-600">
+              <Link href="/checkout" className="block hover:text-red-600">
                 Checkout
               </Link>
             </li>

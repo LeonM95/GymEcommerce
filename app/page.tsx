@@ -18,10 +18,11 @@ export default async function Home() {
         <div className="mx-auto grid grid-cols-1 items-center justify-items-center gap-8 px-8 sm:px-16 md:grid-cols-2">
           <div className="max-w-md space-y-4">
             <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-              Welcome to my Ecommerce
+              Welcome to Gym Core
             </h2>
             <p className="text-neutral-600">
-              Discover the latest producs at the best prices.
+              Unleash your potential with the best training gear for real
+              athletes
             </p>
             {/* this button comes from shadcn*/}
             <Button
