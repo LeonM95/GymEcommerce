@@ -1,7 +1,6 @@
 "use strict";
 import { stripe } from "@/lib/stripe";
 import { ProductList } from "@/components/ProductList";
-import { Card } from "@/components/ui/card";
 
 export default async function ProductsPage() {
   // fetch products from stripe

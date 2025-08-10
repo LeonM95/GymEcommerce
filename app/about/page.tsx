@@ -15,7 +15,7 @@ export default function AboutPage() {
 
         <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
           At Gym Core Supply, we&apos;re more than just a store—we&apos;re a
-          trusted partner in your training journey Whether you&apos;re lifting
+          trusted partner in your training journey. Whether you&apos;re lifting
           in the gym, grinding on the mat, or pushing limits on the field, we
           provide the gear that keeps you moving forward.
         </p>
